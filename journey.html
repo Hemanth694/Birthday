@@ -1,0 +1,330 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Birthday Surprise</title>
+    <style>
+
+      .bg-birthday-text {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -10;
+        opacity: 0.06;
+        font-size: 24px;
+        font-weight: bold;
+        font-family: 'Comic Sans MS', cursive;
+        color: #9b30ff;
+        pointer-events: none;
+        user-select: none;
+        white-space: pre;
+        background: repeating-linear-gradient(
+          top,
+          transparent 0,
+          transparent 40px,
+          rgba(0, 0, 0, 0.01) 40px,
+          rgba(0, 0, 0, 0.01) 41px
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+      }
+      
+      .bg-birthday-text::before {
+        content:
+          "Happy Birthday Sneha BB     Happy Birthday Sneha BB     Happy Birthday Sneha BB\n"
+          "Happy Birthday Sneha BB     Happy Birthday Sneha BB     Happy Birthday Sneha BB\n"
+          "Happy Birthday Sneha BB     Happy Birthday Sneha BB     Happy Birthday Sneha BB\n"
+          "Happy Birthday Sneha BB     Happy Birthday Sneha BB     Happy Birthday Sneha BB\n"
+          "Happy Birthday Sneha BB     Happy Birthday Sneha BB     Happy Birthday Sneha BB\n"
+          "Happy Birthday Sneha BB     Happy Birthday Sneha BB     Happy Birthday Sneha BB\n"
+          "Happy Birthday Sneha BB     Happy Birthday Sneha BB     Happy Birthday Sneha BB\n";
+        line-height: 40px;
+      }
+      
+      
+      body {
+        margin: 0;
+        background-color: #ffe6f0;
+        font-family: 'Comic Sans MS', cursive;
+        text-align: center;
+        overflow-x: hidden;
+        padding: 20px;
+      }
+
+      #birthday-text {
+        position: fixed;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 150px;
+        font-weight: 900;
+        color: #9b30ff;
+        opacity: 0.15;              /* Make it subtle */
+        user-select: none;
+        pointer-events: none;
+        font-family: 'Comic Sans MS', cursive;
+        z-index: -1;               /* Behind everything */
+        white-space: nowrap;       /* Prevent wrapping */
+      }
+      
+      
+
+      audio {
+        margin: 30px auto 10px;
+        display: block;
+      }
+
+      .surprise-button {
+        display: block;
+        margin: 20px auto 10px; /* less vertical space */
+        padding: 15px 30px;
+        background-color: #ff66b2;
+        color: white;
+        font-size: 20px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 0 0 15px #ff99cc;
+      }
+      
+      .emoji-dancers {
+        display: none; /* show after surprise */
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px; /* reduced margin */
+        flex-wrap: wrap;
+        padding: 0;
+      }
+      
+      .emoji-dancers img {
+        width: 160px;
+        height: 160px;
+        border-radius: 10px;
+        margin: 0;
+        box-shadow: 0 0 8px rgba(255, 182, 193, 0.4);
+      }
+      
+      .cake {
+        background-color: #fff0f5;
+        border-radius: 25px;
+        padding: 10px;
+        margin: 10px auto;
+        width: fit-content;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: none;
+      }
+      
+      .cake img {
+        display: block;
+        border-radius: 15px;
+        width: 300px;
+        margin: 0 auto;
+      }
+
+      #photo-gallery {
+        column-count: 3;
+        column-gap: 15px;
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 0;
+      }
+      
+      #photo-gallery img {
+        width: 100%;
+        margin-bottom: 15px;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(255, 105, 180, 0.3);
+        display: inline-block;
+        break-inside: avoid;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      
+      #photo-gallery img:hover {
+        transform: scale(1.05);
+      }
+      
+      .about-you-text {
+        margin-top: 20px;
+        font-size: 26px;
+        font-weight: bold;
+        color: #8e44ad;
+        font-family: 'Comic Sans MS', cursive;
+        text-shadow: 2px 2px 5px rgba(155, 89, 182, 0.2);
+        animation: fadeIn 2s ease-in-out forwards;
+        opacity: 0;
+      }
+      
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }           
+
+
+      .flame {
+        animation: flicker 0.2s infinite alternate;
+      }
+
+      @keyframes flicker {
+        0% { opacity: 0.8; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1.1); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="birthday-bg" style="display: none;">
+      <div class="birthday-background-text"></div>
+    </div>
+    
+    <button class="surprise-button" onclick="launchSurprise()">🎊 Show Surprise!</button>
+
+    <div class="about-you-text" id="about-you-text" style="display: none;">
+      Here's something I know about you 💜 - Your own pinterest board :)
+    </div>
+  
+
+    <canvas id="confetti-canvas"></canvas>
+
+  <div id="photo-gallery" style="display:none;">
+    <img src="Photos\diet coke.jpg" alt="Photo 1" />
+    <img src="Photos\cake.jpg" alt="Photo 2" />
+    <img src="Photos\flowerclip.jpg" alt="Photo 3" />
+    <img src="Photos\ldr.jpg" alt="Photo 4" />
+    <img src="Photos\ravenclawcat.jpg" alt="Photo 5" />
+    <img src="Photos\scotland.jpg" alt="Photo 6" />
+    <img src="Photos\solar.jpg" alt="Photo 7" />
+    <img src="Photos\tacos.jpg" alt="Photo 8" />
+    <img src="Photos\lily.jpg" alt="Photo 9" />
+    <img src="Photos\parkstreet.jpg" alt="Photo 10" />
+    <img src="Photos\christmaskolkata.jpg" alt="Photo 11" />
+    <img src="Photos\christmasscotland.jpg" alt="Photo 12" />
+    <img src="Photos\purplily.jpg" alt="Photo 13" />
+    <img src="Photos\gulabjamun.jpg" alt="Photo 14" />
+    <img src="Photos\934.jpg" alt="Photo 15" />
+    <img src="Photos\kkr.jpg" alt="Photo 16" />
+    <img src="Photos\thali.jpg" alt="Photo 17" />
+    <img src="Photos\momos.jpg" alt="Photo 18" />
+    <img src="Photos\eduni.jpg" alt="Photo 19" />
+    <img src="Photos\lol.jpg" alt="Photo 20" />
+    <img src="Photos\papmovie.jpg" alt="Photo 21" />
+    <img src="Photos\bts.jpg" alt="Photo 22" />
+    <img src="Photos\ga.jpg" alt="Photo 23" />
+    <img src="Photos\kitchen.jpg" alt="Photo 24" />
+    <img src="Photos\coffee.jpg" alt="Photo 25" />
+    <img src="Photos\mall.jpg" alt="Photo 26" />
+    <img src="Photos\miniso.jpg" alt="Photo 27" />
+    <img src="Photos\house.jpg" alt="Photo 28" />
+    <img src="Photos\jhumka.jpg" alt="Photo 29" />
+    <img src="Photos\ka.jpg" alt="Photo 30" />
+    <img src="Photos\jane.jpg" alt="Photo 31" />
+    <img src="Photos\saturn.jpg" alt="Photo 32" />
+    <img src="Photos\moon.jpg" alt="Photo 33" />
+    <img src="Photos\wowow.jpg" alt="Photo 34" />
+    <img src="Photos\wlily.jpg" alt="Photo 35" />
+    <img src="Photos\cherrycola.jpg" alt="Photo 36" />
+    <img src="Photos\ysl.jpg" alt="Photo 37" />
+    <img src="Photos\gavodka.jpg" alt="Photo 38" />
+    <img src="Photos\movie.jpg" alt="Photo 39" />
+    <img src="Photos\dove.jpg" alt="Photo 40" />
+    <img src="Photos\pearlwatc.jpg" alt="Photo 41" />
+    <img src="Photos\pearlcat.jpg" alt="Photo 42" />
+    <img src="Photos\pearl.jpg" alt="Photo 43" />
+    <img src="Photos\lily22.jpg" alt="Photo 44" />
+    <img src="Photos\ssr.jpg" alt="Photo 45" />
+    <img src="Photos\aww.jpg" alt="Photo 46" />
+    <img src="Photos\ssr2.jpg" alt="Photo 47" />
+    <img src="Photos\abouttime.jpg" alt="Photo 48" />
+    <img src="Photos\before.jpg" alt="Photo 49" />
+    <img src="Photos\hg.jpg" alt="Photo 50" />
+    <img src="Photos\hg2.jpg" alt="Photo 51" />
+    <img src="Photos\band.jpg" alt="Photo 52" />
+    <img src="Photos\bandd.jpg" alt="Photo 53" />
+    <img src="Photos\lol2.jpg" alt="Photo 54" />
+    <img src="Photos\job.jpg" alt="Photo 55" />
+    <img src="Photos\linkedin.jpg" alt="Photo 56" />
+    <img src="Photos\damn.jpg" alt="Photo 57" />
+    <img src="Photos\oh.jpg" alt="Photo 58" />
+    <img src="Photos\sea.jpg" alt="Photo 59" />
+    <img src="Photos\field.jpg" alt="Photo 60" />
+    <img src="Photos\yummy.jpg" alt="Photo 61" />
+    <img src="Photos\jalebi.jpg" alt="Photo 62" />
+    <img src="Photos\aloo.jpg" alt="Photo 63" />
+    <img src="Photos\corndog.jpg" alt="Photo 64" />
+    <img src="Photos\friessalad.jpg" alt="Photo 65" />
+    <img src="Photos\fries.jpg" alt="Photo 66" />
+    <img src="Photos\chai.jpg" alt="Photo 67" />
+    <img src="Photos\df.jpg" alt="Photo 68" />
+    <img src="Photos\berry.jpg" alt="Photo 69" />
+    <img src="Photos\honeymoon.jpg" alt="Photo 70" />
+    <img src="Photos\rome.jpg" alt="Photo 71" />
+    <img src="Photos\swan.jpg" alt="Photo 72" />
+    <img src="Photos\watermelon.jpg" alt="Photo 73" />
+    <img src="Photos\combo.jpg" alt="Photo 74" />
+    <img src="Photos\rajma.jpg" alt="Photo 75" />
+    <img src="Photos\deercat.jpg" alt="Photo 76" />
+    <img src="Photos\cocktail.jpg" alt="Photo 77" />
+    <img src="Photos\Submarine.jpg" alt="Photo 78" />
+    <img src="Photos\10days.jpg" alt="Photo 79" />
+    <img src="Photos\tange1.jpg" alt="Photo 80" />
+    <img src="Photos\tange2.jpg" alt="Photo 81" />
+    <img src="Photos\bs.jpg" alt="Photo 82" />
+    <img src="Photos\1330.jpg" alt="Photo 83" />
+    <img src="Photos\lala.jpg" alt="Photo 84" />
+    <img src="Photos\tangled.jpg" alt="Photo 85" />
+    <img src="Photos\notebook.jpg" alt="Photo 86" />
+    <img src="Photos\lollll.jpg" alt="Photo 87" />
+    <img src="Photos\about.jpg" alt="Photo 88" />
+    <img src="Photos\gif.gif" alt="Photo 89" />
+    <img src="Photos\write.jpg" alt="Photo 90" />
+    <img src="Photos\headphones.jpg" alt="Photo 91" />
+    <img src="Photos\tlou.jpg" alt="Photo 92" />
+    <img src="Photos\roblox.jpg" alt="Photo 93" />
+    <img src="Photos\legacy.jpg" alt="Photo 94" />
+    <img src="Photos\detroit.jpg" alt="Photo 95" />
+    <img src="Photos\det2.jpg" alt="Photo 96" />
+    <img src="Photos\house22.jpg" alt="Photo 97" />
+    <img src="Photos\omgggg.jpg" alt="Photo 98" />
+    <img src="Photos\haha.jpg" alt="Photo 99" />
+    <img src="Photos\real.jpg" alt="Photo 100" />
+  </div>
+  
+  <button class="surprise-button" id="love-quiz-btn" style="display: none;" onclick="goToQuiz()">
+    ❤️ Take the Love Quiz
+  </button>
+
+    <!-- Confetti and Fireworks Script -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+      function launchSurprise() {
+        // Fireworks burst
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            confetti({
+              particleCount: 100,
+              spread: 100,
+              origin: { y: 0.6 }
+            });
+          }, i * 400);
+        }
+
+        // Show cake
+        document.getElementById("birthday-bg").style.display = "block";
+        document.getElementById("birthday-text").style.display = "block";
+        document.getElementById("love-quiz-btn").style.display = "block";
+        document.getElementById("photo-gallery").style.display = "block";
+        document.getElementById("about-you-text").style.display = "block";
+      }
+      function goToQuiz() {
+        window.location.href = "quiz.html";
+      }
+    </script>
+    <div id="birthday-text" style="display: none;">Happy Birthday</div>
+
+  </body>
+  </html>

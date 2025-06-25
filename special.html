@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Why You're So Special 💜</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background: linear-gradient(to bottom right, #fbeaff, #e0c3fc);
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      color: #fff;
+    }
+
+    h1 {
+      color: #8a2be2;
+      margin-bottom: 40px;
+    }
+
+    .hidden-box {
+      background-color: #a020f0;
+      color: transparent;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 15px auto;
+      width: 90%;
+      max-width: 500px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid #d8b4f8;
+      user-select: none;
+    }
+
+    .hidden-box.revealed {
+      color: #ffffff;
+      background-color: #6a0dad;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+
+    .back-button {
+      margin-top: 50px;
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 16px;
+      background: #ff69b4;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      box-shadow: 0 4px 12px rgba(255, 105, 180, 0.4);
+      transition: transform 0.2s;
+    }
+
+    .back-button:hover {
+      transform: scale(1.05);
+      background: #ff1493;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Why You're So Special 💖</h1>
+
+  <div class="hidden-box" onclick="reveal(this)">YOU ALWAYS LISTEN. HELL YEAH</div>
+  <div class="hidden-box" onclick="reveal(this)">YOUR SMILE MAKES MY DAY 10000000% TIMES BETTER!!!!!</div>
+  <div class="hidden-box" onclick="reveal(this)">AREY YAAR.... UPAR WAALA M ITS ACTUALLY 100000000000000000000% TIMES LMAO SILLY ME</div>
+  <div class="hidden-box" onclick="reveal(this)">YOU'RE SO KIND TO ME AND ALWAYS GIVE ME THE BEST ADVICE</div>
+  <div class="hidden-box" onclick="reveal(this)">YOU CARE FOR ME LIKE NO ONE</div>
+  <div class="hidden-box" onclick="reveal(this)">WITH YOU, EVEN SMALL AND ORDINARY MOMENTS ARE BEAUTIFUL (JUST LIKE U)</div>
+  <div class="hidden-box" onclick="reveal(this)">HEHHHEEHEHHE YOU GIVE ME BUTTERFLIES YAYAYAYAYAY</div>
+  <div class="hidden-box" onclick="reveal(this)">YOU'RE SOOOO SMARTTTTTTT MWAAAHHHHHH</div>
+  <div class="hidden-box" onclick="reveal(this)">YOU HAVE SO MUCH TO YAP AND SAY WHICH I LOVE ABOUT YOUUUU</div>
+  <div class="hidden-box" onclick="reveal(this)">YOU ARE A LITERAL BLESSING TO ME MY LOVE MWAHH.</div>
+
+  <a class="back-button" href="stars.html">STARS HMMMMMMM</a>
+
+  <script>
+    function reveal(element) {
+      element.classList.toggle("revealed");
+    }
+  </script>
+</body>
+</html>

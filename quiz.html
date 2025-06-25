@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Love Quiz</title>
+  <style>
+    body {
+      background: #fff0f5;
+      font-family: 'Comic Sans MS', cursive;
+      margin: 0;
+      padding: 20px;
+      color: #444;
+    }
+
+    h1 {
+      text-align: center;
+      color: #e91e63;
+      margin-bottom: 30px;
+    }
+
+    form {
+      max-width: 800px;
+      margin: auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+    }
+
+    .question-block {
+      margin-bottom: 25px;
+      border-bottom: 1px dashed #ffc1e3;
+      padding-bottom: 15px;
+    }
+
+    .question-block:last-child {
+      border-bottom: none;
+    }
+
+    label {
+      display: block;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    button {
+      display: block;
+      margin: 30px auto 0;
+      padding: 12px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      background-color: #ff69b4;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e91e63;
+    }
+
+    /* Flying Note */
+    .note {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.5);
+      background-color: #fff0f5;
+      color: #d63384;
+      font-size: 24px;
+      padding: 15px 25px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+      opacity: 0;
+      transition: all 0.8s ease;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .note.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .image-options {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      
+      .image-options label {
+        cursor: pointer;
+        text-align: center;
+      }
+      
+      .image-options input[type="radio"] {
+        display: none;
+      }
+      
+      .image-options img {
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 15px;
+        border: 3px solid transparent;
+        transition: transform 0.2s ease, border-color 0.3s ease;
+        box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+      }
+      
+      .image-options input[type="radio"]:checked + img {
+        border-color: #ff69b4;
+        transform: scale(1.05);
+      }
+      
+  </style>
+</head>
+<body>
+  <h1>💘 Our Love Quiz 💘</h1>
+
+  <form id="loveQuiz">
+    <div class="question-block">
+      <p><strong>1. Where did we first meet?</strong></p>
+      <label><input type="radio" name="q1" value="Function"> Function</label>
+      <label><input type="radio" name="q1" value="Dhaka"> Dhaka</label>
+      <label><input type="radio" name="q1" value="Park Street"> Park Street</label>
+      <label><input type="radio" name="q1" value="Omegle"> Omegle</label>
+    </div>
+
+    <div class="question-block">
+      <p><strong>2. Who's my favourite actor?</strong></p>
+      <label><input type="radio" name="q2" value="Allu Arjun"> Allu Arjun</label>
+      <label><input type="radio" name="q2" value="Prabhas"> Prabhas</label>
+      <label><input type="radio" name="q2" value="Uttam Kumar"> Uttam Kumar</label>
+      <label><input type="radio" name="q2" value="Salman Khan"> Salman Khan</label>
+    </div>
+
+    <div class="question-block">
+      <p><strong>3. Where did I graduate?</strong></p>
+      <label><input type="radio" name="q3" value="Chennai"> Chennai</label>
+      <label><input type="radio" name="q3" value="Bangalore"> Bangalore</label>
+      <label><input type="radio" name="q3" value="Delhi"> Delhi</label>
+      <label><input type="radio" name="q3" value="Kerala"> Kerala</label>
+    </div>
+
+    <div class="question-block">
+      <p><strong>4. What’s my dream vacation spot?</strong></p>
+      <label><input type="radio" name="q4" value="Switzerland"> Switzerland</label>
+      <label><input type="radio" name="q4" value="Maldives"> Maldives</label>
+      <label><input type="radio" name="q4" value="Japan"> Japan</label>
+      <label><input type="radio" name="q4" value="Iceland"> Iceland</label>
+    </div>
+
+    <div class="question-block">
+      <p><strong>5. If we could teleport to each other right now, what’s the first thing we’d do?</strong></p>
+      <label><input type="radio" name="q5" value="Fucking"> Fucking</label>
+      <label><input type="radio" name="q5" value="Netflix"> Netflix</label>
+      <label><input type="radio" name="q5" value="Eating"> Eating</label>
+      <label><input type="radio" name="q5" value="Fighting"> Fighting</label>
+    </div>
+
+    <div class="question-block">
+        <p><strong>6. What is my favourite photo of yours?</strong></p>
+        <div class="image-options">
+          <label>
+            <input type="radio" name="q6" value="bb1">
+            <img src="Masala/bb1.jpg" alt="Option 1">
+          </label>
+          <label>
+            <input type="radio" name="q6" value="bb2">
+            <img src="Masala/bb2.jpg" alt="Option 2">
+          </label>
+          <label>
+            <input type="radio" name="q6" value="bb3">
+            <img src="Masala/bb3.jpg" alt="Option 3">
+          </label>
+          <label>
+            <input type="radio" name="q6" value="bb4">
+            <img src="Masala/bb4.jpg" alt="Option 4">
+          </label>
+        </div>
+      </div>    
+      
+    
+    <div class="question-block">
+        <p><strong>7. Which location are my office and house located?</strong></p>
+        <label><input type="radio" name="q7" value="JP Nagar and Electronic city"> JP Nagar and Electronic city</label>
+        <label><input type="radio" name="q7" value="Netflix"> JP Nagar and Jayanagar</label>
+        <label><input type="radio" name="q7" value="Eating"> Electronic Cty and JP Nagar</label>
+        <label><input type="radio" name="q7" value="Fighting"> Electronic City and Jayanagar</label>
+    </div>
+
+    <div class="question-block">
+        <p><strong>8. What is my shirt size?</strong></p>
+        <label><input type="radio" name="q8" value="L"> L</label>
+        <label><input type="radio" name="q8" value="M"> M</label>
+        <label><input type="radio" name="q8" value="XL"> XL</label>
+        <label><input type="radio" name="q8" value="XXL"> XXL</label>
+    </div>
+
+    <div class="question-block">
+        <p><strong>9. Which pet did I have?</strong></p>
+        <label><input type="radio" name="q9" value="Dog"> Dog</label>
+        <label><input type="radio" name="q9" value="Cat"> Cat</label>
+        <label><input type="radio" name="q9" value="Cow"> Cow</label>
+        <label><input type="radio" name="q9" value="Fish"> Fish</label>
+    </div>
+
+    <div class="question-block">
+        <p><strong>10. What is my fav hobby?</strong></p>
+        <label><input type="radio" name="q10" value="Eatig"> Eating</label>
+        <label><input type="radio" name="q10" value="Sleeping"> Sleeping</label>
+        <label><input type="radio" name="q10" value="TV"> TV</label>
+        <label><input type="radio" name="q10" value="YOU"> YOU.</label>
+    </div>
+
+    <button type="submit">💖 Submit Quiz</button>
+  </form>
+
+  <!-- Flying Note -->
+  <div id="flying-note" class="note">💌 You're adorable!</div>
+
+  <script>
+    // Flying note logic
+    function showFlyingNote(message) {
+      const note = document.getElementById("flying-note");
+      note.textContent = message;
+      note.classList.add("show");
+      setTimeout(() => {
+        note.classList.remove("show");
+      }, 2000);
+    }
+  
+    const correctAnswers = {
+      q1: "Function",
+      q2: "Prabhas",
+      q3: "Chennai",
+      q4: "Iceland",
+      q5: "Fucking",
+      q6: "bb3",
+      q7: "Eating",
+      q8: "L",
+      q9: "Dog",
+      q10: "YOU"
+    };
+  
+    const cuteMessages = [
+      "💘 Aww, you know me so well!",
+      "💌 Right again, lovebug!",
+      "😍 My heart just did a flip!",
+      "💖 That's exactly it!",
+      "😘 You’re on fire!"
+    ];
+  
+    document.querySelectorAll("input[type='radio']").forEach(radio => {
+      radio.addEventListener("change", function () {
+        const name = this.name;
+        const value = this.value;
+        if (correctAnswers[name] === value) {
+          const randomMsg = cuteMessages[Math.floor(Math.random() * cuteMessages.length)];
+          showFlyingNote(randomMsg);
+        }
+      });
+    });
+  
+    document.getElementById("loveQuiz").addEventListener("submit", function (e) {
+      e.preventDefault();
+  
+      let score = 0;
+      Object.keys(correctAnswers).forEach(q => {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === correctAnswers[q]) {
+          score++;
+        }
+      });
+  
+      let resultMessage = "";
+      if (score === 10) {
+        resultMessage = "❤️❤️❤️ YAYAYAYAYAYAYAYAYAYA ❤️❤️❤️";
+      } else if (score >= 5) {
+        resultMessage = "❤️ Damn, it's okieee MWAH ❤️";
+      } else {
+        resultMessage = "💔 :( it's okieeee we got more time to know abt each other 💔";
+      }
+  
+      // Create result container if it doesn't exist
+      let resultContainer = document.getElementById("quizResult");
+      if (!resultContainer) {
+        resultContainer = document.createElement("div");
+        resultContainer.id = "quizResult";
+        document.body.appendChild(resultContainer);
+      }
+  
+      resultContainer.innerHTML = `
+  <div style="
+    text-align: center;
+    margin-top: 40px;
+    font-size: 26px;
+    color: #d63384;
+    background: #ffe6f2;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(255, 105, 180, 0.3);
+  ">
+    <div style="font-size: 40px;">💘 Your Score: ${score}/10 💘</div>
+    <div style="margin-top: 15px;">${resultMessage}</div>
+    <button onclick="window.location.href='edit.html'" style="
+      margin-top: 30px;
+      background-color: #ff85b3;
+      color: white;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 25px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    ">🎁 A lil gift cutie 💝</button>
+  </div>
+`;
+    });
+  </script>  
+</body>
+</html>

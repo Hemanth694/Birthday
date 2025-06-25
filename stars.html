@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Starry Night</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive;
+      overflow: hidden;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #ffe6f9, #e6ccff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: #6a0dad;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    .container {
+      z-index: 2;
+      text-align: center;
+      padding: 30px;
+      background-color: rgba(255, 240, 245, 0.85);
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(186, 85, 211, 0.3);
+    }
+
+    .star-map {
+      max-width: 90vw;
+      max-height: 50vh;
+      border: 6px solid #dda0dd;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(153, 50, 204, 0.3);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 32px;
+      text-shadow: 1px 1px #fce4ec;
+    }
+
+    .caption {
+      margin-top: 20px;
+      margin-bottom: 30px; /* Add spacing below caption */
+      font-size: 22px;
+      color: #b030b0;
+      font-style: italic;
+      text-shadow: 1px 1px #ffe6f2;
+    }
+    
+    .back-button {
+      padding: 12px 25px;
+      background-color: #d291ff;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      z-index: 3;
+      position: relative;
+      display: inline-block;
+    }
+    
+    
+
+    .back-button:hover {
+      background-color: #c65ff5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stars" id="stars-container"></div>
+
+  <div class="container">
+    <h1>✨ Our Night Sky – September 16, 2024 ✨</h1>
+    <img src="Masala/star.png" alt="Star Map of September 16, 2024" class="star-map">
+    <div class="caption">The stars did align on this day bb MWAH 💜</div>
+    <a class="back-button" href="rome.html">LES go on VACA!!!!</a>
+  </div>  
+
+
+
+</body>
+</html>

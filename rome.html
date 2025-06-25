@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Roman Romance🎉</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      text-align: center;
+      color: #800000;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Moving Rome map background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 200%;
+      width: 200%;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Map_of_ancient_Rome_%28English%29.svg/1920px-Map_of_ancient_Rome_%28English%29.svg.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0.08;
+      z-index: -2;
+      animation: panBackground 60s linear infinite;
+    }
+
+    @keyframes panBackground {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(-10%, -10%); }
+      100% { transform: translate(0, 0); }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp 8s infinite ease-in-out;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.2); }
+      100% { transform: translateY(-60px) scale(1); opacity: 0; }
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 42px;
+      color: #8B0000;
+      text-shadow: 1px 1px 4px #ffb6c1;
+      z-index: 2;
+      position: relative;
+    }
+
+    .postcard {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: rgba(255, 250, 240, 0.9);
+      border: 3px solid #deb887;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 6px 18px rgba(139, 69, 19, 0.2);
+      backdrop-filter: blur(5px);
+      z-index: 2;
+      position: relative;
+      animation: fadeIn 2s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .wishlist {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 20px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .card {
+      width: 220px;
+      height: 140px;
+      background: rgba(248, 240, 227, 0.8);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(160, 82, 45, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(3px);
+    }
+
+    .card::before {
+      content: "🍷 Tap to Reveal 🍕";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #d2b48c;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+    }
+
+    .card.revealed::before {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .card.revealed {
+      background-color: rgba(255, 240, 245, 0.9);
+      color: #8B0000;
+      font-weight: bold;
+      box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Our Roman Romance</h1>
+
+  <div class="postcard">
+    <p>
+      Picture this, amore — a golden sunset at the Colosseum, gelato in one hand, your hand in the other. We wander down cobbled alleys with a scooter zooming by, stopping only to kiss under the Roman moonlight. One day, this postcard will be real.
+    </p>
+  </div>
+
+  <div class="wishlist">
+    <div class="card" onclick="this.classList.add('revealed')">Toss a coin in Trevi Fountain</div>
+    <div class="card" onclick="this.classList.add('revealed')">Sunset at the Colosseum</div>
+    <div class="card" onclick="this.classList.add('revealed')">Kiss on the Spanish Steps</div>
+    <div class="card" onclick="this.classList.add('revealed')">Late-night pasta & wine</div>
+    <div class="card" onclick="this.classList.add('revealed')">Write a letter to Juliet</div>
+    <div class="card" onclick="this.classList.add('revealed')">Ride a Vespa together</div>
+  </div>
+
+  <script>
+    // Floating hearts
+    const heartEmojis = ["❤️","💕","💖","💘","💞"];
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerText = heartEmojis[Math.floor(Math.random()*heartEmojis.length)];
+      heart.style.left = Math.random()*100 + 'vw';
+      heart.style.bottom = '-50px';
+      heart.style.animationDuration = 6 + Math.random()*4 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 400);
+  </script>
+
+  <div style="margin-top: 60px; z-index: 3; position: relative;">
+    <a href="final.html" style="
+      display: inline-block;
+      padding: 14px 28px;
+      font-size: 18px;
+      background-color: #800000;
+      color: #fff0f5;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(128, 0, 0, 0.3);
+      transition: background 0.3s ease;
+    " onmouseover="this.style.backgroundColor='#a52a2a'" onmouseout="this.style.backgroundColor='#800000'">
+      💌 Final Surprise
+    </a>
+  </div>
+
+
+</body>
+</html>
